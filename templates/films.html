@@ -1,0 +1,20 @@
+{% extends "nav_page.html" %}
+
+{% block title %}
+    - filmy
+{%  endblock %}
+
+{% block content %}
+    <ul class="gallery">
+        {% for movie in movies %}
+            <li >
+                <h1>{{ movie.0 }} </h1>
+                <img src="{{ movie.1 }}">
+                <button class="see_showtimes" value=" {{ movie.5 }} "> View Schedule </button>
+                <p>Director: {{ movie.4 }}</p>
+                <p>Length: {{ movie.3 }} min </p>
+                <p > {{ movie.2 }} </p>
+            </li>
+        {%  endfor %}
+    </ul>
+{%  endblock %}

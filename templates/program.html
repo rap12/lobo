@@ -1,0 +1,27 @@
+{% extends "nav_page.html" %}
+{% load staticfiles %}
+{% block title %}
+    - repertuar
+{% endblock %}
+
+{% block content %}
+    <h1> Screenings at the cinema</h1>
+
+    <div class="showtime">
+        <table id="seats_table">
+        {% for data_set in data %}
+            <tr>
+                <td> {{ data_set.7 }}</td>
+                <td> {{ data_set.0 }}:{{ data_set.1 }}</td>
+                <td> {{ data_set.2 }}</td>
+                <td> {{ data_set.6 }}</td>
+                <td>
+                    <button class="check_seats" value="{{ data_set.5 }}"> Check available places</button>
+                </td>
+            </tr>
+            {% empty %}
+                <h2>We do not currently display this video</h2>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}

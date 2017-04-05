@@ -1,0 +1,15 @@
+{% extends "nav_page.html" %}
+{% load staticfiles %}
+{% block title %}
+    - zaloguj się
+{%  endblock %}
+{% block content %}
+
+    <form method="POST" action="/register/">
+        {% csrf_token %}
+        <p>Sign Up :<input type="text" id="login" name="username" placeholder="Username">
+        <input type="password" id="password" name="password" placeholder="Password">
+        <input type="email" id='email' placeholder="Email" name="email">
+        <input type="submit" id="register_button" name="Zarejestruj" value="Register"></p>
+    </form>
+{%  endblock %}

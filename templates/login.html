@@ -1,0 +1,14 @@
+{% extends "nav_page.html" %}
+{% load staticfiles %}
+{% block title %}
+    - zaloguj się
+{%  endblock %}
+{% block content %}
+
+    <form method="POST" action="/login/">
+        {% csrf_token %}
+        <p>Sign In: <input type="text" id="login" name="username" placeholder="Username">
+        <input type="password" id="password" name="password" placeholder="Password">
+        <input type="submit" id="log_in_button" name="Zaloguj" value="Submit"></p>
+    </form>
+{%  endblock %}

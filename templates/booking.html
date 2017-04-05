@@ -1,0 +1,32 @@
+{% extends "nav_page.html" %}
+{% load staticfiles %}
+{% block title %}
+    - zarezerwuj bilety
+{%  endblock %}
+
+{% block content %}
+    <h1> Ticket Bookinf </h1>
+    <h2> {{ title }} - Screening for the day {{ date }} at {{ time }}</h2>
+
+        {% for row, seat in seats.items %}
+            <ul class="seats">
+            {% for number in seat %}
+                {% for num, data in number.items %}
+                    {% if data == "taken" %}
+                        <li>
+                            <img class="seat" value="{{ row }} {{ num }}" src="{% static "seat_taken.png" %}">
+                        </li>
+                    {% else %}
+                        <li>
+                        <img class="seat" value="{{ row }} {{ num }}" src="{% static "seat_empty.png" %}">
+                        </li>
+                    {% endif %}
+                {%  endfor %}
+            {%  endfor %}
+            </ul>
+            <br>
+        {%  endfor %}
+    <button id="book" value="{{ showtime_id }}"> Book Tickets </button>
+    <div id="token"> {% csrf_token %} </div>
+
+{%  endblock %}

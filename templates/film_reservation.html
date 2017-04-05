@@ -1,0 +1,30 @@
+{% extends "staff_nav.html" %}
+
+{% block title %}
+    - wybierz film
+{%  endblock %}
+
+{% block content %}
+    <div>
+         <ul>
+        {% for movie in movies %}
+            <li >
+                <ul class="movie_list">
+                    <li>
+                        {{ movie.0 }}
+                    </li>
+                    <li>
+                        Director: {{ movie.1 }}
+                    </li>
+                    <li>
+                        Year released: {{ movie.2 }}
+                    </li>
+                    <li>
+                        <button class="book_btn" value="{{ movie.3 }}"> Book </button>
+                    </li>
+                </ul>
+            </li>
+        {%  endfor %}
+    </ul>
+    </div>
+{%  endblock %}

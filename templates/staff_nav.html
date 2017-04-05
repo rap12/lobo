@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Kino XYZ {% block title %} - strona główna{%  endblock %} </title>
+    <link rel="stylesheet" type="text/css" href=" {% static "nav_style.css" %} "/>
+    <link rel="stylesheet" type="text/css" href=" {% static "style.css" %} "/>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="{% static "client.js" %}"></script>
+    <script src="{% static "staff.js" %}"></script>
+</head>
+<body>
+    <header>
+    </header>
+    <div id="top">
+
+
+    <div id="authentication">
+        <div id="text_auth">
+            {% if request.user.is_authenticated %}
+                <form method="POST" action="/logout/">
+                    {% csrf_token %}
+                    <p>Jesteś zalogowany jako {{ request.user.username }}</p>
+                    <input class="log_btn" id="loggout" type="submit" value="wyloguj">
+                </form>
+            {% else %}
+                <div id="accounts">
+                    <a href="/login_form/">Zaloguj się</a>
+                    <a href="/register_form/">Załóż konto</a>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+    <nav>
+        <ul id="nav">
+            <li>
+                <a href="/">Strona domowa</a>
+            </li>
+            <li>
+                <a href="/films/">Filmy</a>
+            </li>
+            <li>
+                <a href="/program/">Repertuar</a>
+            </li>
+            <li>
+                <a href="/client_reservation/">Rezerwacja</a>
+            </li>
+            <li>
+                <a href="/ticket_new/">Nowy bilet</a>
+            </li>
+        </ul>
+    </nav>
+    </div>
+    {% block content %}
+    <div>
+        <h1>Dział rezerwacji</h1>
+        <div>
+            <h2>Zrealizuj rezerwację klienta</h2>
+            <input id='reservation_number' type="number" placeholder="numer rezerwacji">
+            <button id="reservation_btn">Zrealizuj rezerwację</button>
+        </div>
+        <div>
+            <h2>Wybierz nowy bilet</h2>
+            <button id="ticket_btn">Nowy bilet</button>
+        </div>
+    </div>
+{%  endblock %}
+</body>
+</html>

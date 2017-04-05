@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Inflatable Island</title>
+    <link rel="stylesheet" type="text/css" href=" {% static "nav_style.css" %} "/>
+    <link rel="stylesheet" type="text/css" href=" {% static "style.css" %} "/>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="{% static "client.js" %}"></script>
+    <script src="{% static "staff.js" %}"></script>
+</head>
+<body>
+    <header>
+    </header>
+    <div id="top">
+
+
+    <div id="authentication">
+        <div id="text_auth">
+            {% if request.user.is_authenticated %}
+                <form method="POST" action="/logout/">
+                    {% csrf_token %}
+                    <p>Jesteś zalogowany jako {{ request.user.username }}</p>
+                    <input class="log_btn" id="loggout" type="submit" value="wyloguj">
+                </form>
+            {% else %}
+                <div id="accounts">
+                    <a href="/login_form/">Sign In</a>
+                    <a href="/register_form/">Sign Up</a>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+    <nav>
+        <ul id="nav">
+            <li>
+                <a href="/">Homepage</a>
+            </li>
+            <li>
+                <a href="/films/">Films</a>
+            </li>
+            <li>
+                <a href="/program/">Repertoire</a>
+            </li>
+            <li>
+                <a href="/contact/">Contact Us</a>
+            </li>
+            {% if account_type == 1 %}
+                <li>
+                <a href="/reservation/">Reservation System</a>
+            </li>
+            {% endif %}
+            {% if account_type == 2 %}
+                <li>
+                <a href="/administration/">Administation</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    </div>
+        {% block content %}
+    {%  endblock %}
+</body>
+</html>
